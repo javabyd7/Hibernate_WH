@@ -25,10 +25,10 @@ public class BookDAO {
 
     public List<Book> findAllBooks(){
         Session session = HibernateUtils.getSession();
-        List<Book> book = session.createQuery("select b from Book b",Book.class)
-                .getResultList();
-        List<Book> books = session.getNamedQuery()
-        return book;
+        //List<Book> book = session.createQuery("select b from Book b",Book.class)
+          //      .getResultList();
+        List books = session.getNamedQuery("selectBooks").getResultList();
+        return books;
 
 
     }

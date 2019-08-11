@@ -9,6 +9,14 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(
+                name = "selectBooks",
+                query = "SELECT DISTINCT b FROM Book b" +
+                        " JOIN FETCH b.authors" +
+                        " JOIN FETCH b.category"
+        )
+})
 public class Book {
 
     public Book(String title, Category category, Set<Author> author) {
