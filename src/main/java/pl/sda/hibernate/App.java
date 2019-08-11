@@ -1,8 +1,11 @@
 package pl.sda.hibernate;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import pl.sda.hibernate.entity.Author;
+import pl.sda.hibernate.entity.Book;
+import pl.sda.hibernate.entity.Category;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Hello world!
@@ -12,12 +15,16 @@ public class App
 {
     public static void main( String[] args )
     {
+        BookDAO bookDAO = new BookDAO();
+        Category category = new Category("Horror");
+        Author author = new Author("Romanski","Jarek");
+        Set<Author> authors = new HashSet<>();
+        authors.add(author);
+        Book book = new Book("DUPA",category,authors);
+        bookDAO.insertBook(book);
 
-        SessionFactory sf = new Configuration()
-                .configure()
-                .buildSessionFactory();
-
-        Session session = sf.openSession();
+        System.out.println("--------------------");
+        System.out.println(bookDAO.findAllBooks());
 
 
 
